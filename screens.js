@@ -1,7 +1,7 @@
 /**
  * Displays the Intro levels, Win and Gameover
  * 
- * Moved here to clean up draw();
+ * Moved here to minimize draw();
  */
 
 function displayIntro() {

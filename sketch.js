@@ -28,7 +28,7 @@
  * Initialize ALL global constants and variables
  */
 
-// UI colors. Not all colours are used.
+// UI colors. Only a few of these are actually used.
 const BLACK = [0, 0, 0];
 const RED = [204, 143, 92];
 const GREEN = [0, 255, 0];
@@ -52,11 +52,12 @@ let introLevel = 0; // INTRO level
 let playLevel = 1; // PLAY level 
 let score = 0; // score
 
-// Arrays for projectiles and asteroids
+// Projectiles and asteroids
 const projectiles = []; // array to hold all active projectile instances
 const asteroids = []; // array to hold all active asteroid instances
-let astCreated = 0; // Running total # asteroids created in a level
+let astCreated = 0; // Running total of # of asteroids created in a level
 
+// PLAY levels
 // JavaScript object literal to hold play level data where:
 //   astMax == total number of asteroids to create in the level
 //   astInterval == # of pixels moved per loop (larger number == faster)
@@ -65,12 +66,11 @@ const PLAY_LEVELS = {
   1: { astMax: 30, astInterval: 0.5, astSpawnFreq: 60 },
   2: { astMax: 40, astInterval: 0.75, astSpawnFreq: 50  },
   3: { astMax: 75, astInterval: 1.0, astSpawnFreq: 40 }
-  // ... Could as many levels as desired
+  // ... Could add as many levels as desired
 };
-// Const to store # of PLAY levels (excludes Intro, Win, Gameover)
-const levelCount = Object.keys(PLAY_LEVELS).length; // 
+const levelCount = Object.keys(PLAY_LEVELS).length; // Store # of PLAY levels (excludes Intro, Win, Gameover)
 
-// Weapons 
+// Weapons
 const WEAPON_REGEN = 15; // # of frames between consecutive weapons fire
 let frameN = 0; // # of frames since app start
 let weaponFrame = 0; // frame count last time weapon was fired
@@ -121,10 +121,10 @@ function setup() {
  */
 function draw() {
 
-  // Count frames played
+  // Increment # of frames played
   frameN += 1;
 
-  // Check gameState and run it
+  // Check gameState and run the state
   switch (gameState) {
 
     // INTRO level
@@ -161,11 +161,11 @@ function draw() {
           myDisplay = new myConsole();
         }
 
-        // Setup player keyboard controls: <- or a, -> or d, or space bar
+        //  Player keyboard controls: <- or a, -> or d, or space bar
         //   
-        //   Note:
         //   keyIsPressed() detects if a key is held down and
         //   is most suitable for controlling an object like a ship.
+        //
         //   keyPressed() detects a single key press and is most
         //   suitable for moving to the next screen, etc.
         //

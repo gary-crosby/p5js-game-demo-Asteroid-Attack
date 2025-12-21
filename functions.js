@@ -239,8 +239,6 @@ function controlProjectiles(createNew = false) {
 /**
  * Play/Stop music
  * 
- * IMPORTANT: INCOMPLETE
- * 
  * @param {Boolean} state 
  */
 function doMusic(state) {
