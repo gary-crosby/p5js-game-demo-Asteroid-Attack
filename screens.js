@@ -1,14 +1,10 @@
 /**
- * Runs the Intro levels.
+ * Displays the Intro levels, Win and Gameover
  * 
  * Moved here to clean up draw();
- * 
- * params: none
- * returns: nothing
- * 
  */
 
-function runIntro() {
+function displayIntro() {
   // INTRO -> Splash screen 
   if (introLevel === 0) {
     resetBackground();
@@ -64,4 +60,50 @@ function runIntro() {
     textSize(20);
     text("[Press Enter to start your mission]", C_WIDTH / 2, C_HEIGHT / 1.1); // keypress detection in function keyPressed()
   }
+}
+
+function displayWin() {
+  if (winSndPlayed === false) {
+    winSnd.play();
+    winSndPlayed = true;
+  }
+  if (musicPlaying === false) {
+    doMusic(true); // Start music
+  }
+  myShip.x = C_WIDTH / 2;
+  myShip.y = C_HEIGHT - 30;
+  resetBackground();
+  strokeWeight(0);
+  fill(GREEN);
+  textAlign(CENTER, CENTER);
+  textSize(48);
+  text("Mission Accomplished!", C_WIDTH / 2, C_HEIGHT / 5);
+  textAlign(LEFT, TOP);
+  textSize(24);
+  text("You cleared the asteroid fields and delivered your cargo. Nice piloting!\n\n Your mission pay is $" + myDisplay.score, C_WIDTH / 5, C_HEIGHT / 3.6, C_WIDTH / 1.5);
+  textAlign(CENTER, TOP);
+  textSize(20);
+  fill(LIGHT_GREEN); // light green text
+  text("[Press Enter to play again]", C_WIDTH / 2, C_HEIGHT / 1.1);
+}
+
+function displayGameOver() {
+  if (musicPlaying === false) {
+    doMusic(true); // Start music
+  }
+  myShip.x = C_WIDTH / 2;
+  myShip.y = C_HEIGHT - 30;
+  resetBackground();
+  strokeWeight(0);
+  fill(GREEN);
+  textAlign(CENTER, CENTER);
+  textSize(48);
+  text("Game Over", C_WIDTH / 2, C_HEIGHT / 5);
+  textAlign(LEFT, TOP);
+  textSize(24);
+  text("Sorry Captain, but the ESV-217 collided with too many asteroids which depleted the ship's shields and it was destroyed.", C_WIDTH / 5, C_HEIGHT / 3.6, C_WIDTH / 1.5);
+  textAlign(CENTER, TOP);
+  textSize(20);
+  fill(LIGHT_GREEN);
+  text("[Press Enter to play again.]", C_WIDTH / 2, C_HEIGHT / 1.1);
 }
