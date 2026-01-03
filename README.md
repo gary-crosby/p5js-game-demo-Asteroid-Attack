@@ -23,7 +23,7 @@ Music courtesy Eric Matyas at www.soundimage.org. Used under Sound Image Interna
 
 ## Installation
 
-**Regardless of how you install the game, you must run it from a server**.
+<span style="color: red;">**Regardless of how you install the game, you must run it from a server**.</span>
 
 ### Method 1
 Clone the repository:
