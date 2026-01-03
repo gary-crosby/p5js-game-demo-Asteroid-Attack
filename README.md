@@ -28,7 +28,7 @@ Music courtesy Eric Matyas at www.soundimage.org. Used under Sound Image Interna
 ### Method 1
 Clone the repository:
    ```bash
-   git clone https://github.com/gary-crosby/asteroidattack.git
+   git clone https://github.com/gary-crosby/p5js-game-demo-Asteroid-Attack.git
 ```
    
 ### Method 2
