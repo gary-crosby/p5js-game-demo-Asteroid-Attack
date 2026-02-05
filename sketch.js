@@ -66,7 +66,7 @@ const PLAY_LEVELS = {
   1: { astMax: 30, astInterval: 0.5, astSpawnFreq: 60 },
   2: { astMax: 40, astInterval: 0.75, astSpawnFreq: 50  },
   3: { astMax: 75, astInterval: 1.0, astSpawnFreq: 40 }
-  // ... Could add as many levels as desired
+  // ... Could add as more levels, if needed
 };
 const levelCount = Object.keys(PLAY_LEVELS).length; // Store # of PLAY levels (excludes Intro, Win, Gameover)
 
@@ -127,23 +127,20 @@ function draw() {
   // Check gameState and run the state
   switch (gameState) {
 
-    // INTRO level
     case STATE_INTRO:
       console.log("INTRO");
       displayIntro();
       break;
 
-    // PLAY level
     case STATE_PLAY:
       console.log("PLAY");
-
       // Sets PLAY level state
       console.log('levelCount', levelCount);
       console.log('playLevel', playLevel);
       console.log('PLAY_LEVELS[playLevel].astMax', PLAY_LEVELS[playLevel].astMax)
-      if (asteroids.length === 0 && projectiles.length === 0 && astCreated >= PLAY_LEVELS[playLevel].astMax) {
-        playLevel += 1;
-      }
+      // If no active asteroids or projectiles AND all asteroids have been created then increment playLevel
+      playLevel = (asteroids.length === 0 && projectiles.length === 0 && astCreated >= PLAY_LEVELS[playLevel].astMax) ? playLevel + 1 : playLevel;
+
       // Check for ALL levels completed -> WIN!
       if (playLevel > levelCount) {
         gameState = STATE_WIN;
@@ -152,15 +149,14 @@ function draw() {
         // Clear the background and stop the music
         resetBackground();
         doMusic(false);
-
-        // If ship or status display console do not exist then create them
+        // If ship does not exist then create it
         if (typeof myShip === 'undefined') {
           myShip = new Ship(C_WIDTH / 2, C_HEIGHT - 30);
         }
+        // If status display console does not exist then create it
         if (typeof myDisplay === 'undefined') {
           myDisplay = new myConsole();
         }
-
         //  Player keyboard controls: <- or a, -> or d, or space bar
         //   
         //   keyIsPressed() detects if a key is held down and
@@ -206,7 +202,9 @@ function draw() {
         }
         else {
           // Stop the thruster sound if it's playing
-          if (thrusterSnd.isPlaying()) thrusterSnd.stop();
+          if (thrusterSnd.isPlaying()) {
+            thrusterSnd.stop()
+          };
         }
         // Update player status display and projectile position
         myDisplay.display();
@@ -230,13 +228,11 @@ function draw() {
       }
       break;
 
-    // GAME WIN!!!
     case STATE_WIN:
       console.log("WIN");
       displayWin();
       break;
 
-    // GAME OVER :-(
     case STATE_GAMEOVER:
       console.log("GAMEOVER");
       displayGameOver()
