@@ -28,7 +28,7 @@
  * Initialize ALL global constants and variables
  */
 
-// UI colors. Only a few of these are actually used.
+// UI colors. Not all colours are used.
 const BLACK = [0, 0, 0];
 const RED = [204, 143, 92];
 const GREEN = [0, 255, 0];
@@ -52,12 +52,11 @@ let introLevel = 0; // INTRO level
 let playLevel = 1; // PLAY level 
 let score = 0; // score
 
-// Projectiles and asteroids
+// Arrays for projectiles and asteroids
 const projectiles = []; // array to hold all active projectile instances
 const asteroids = []; // array to hold all active asteroid instances
-let astCreated = 0; // Running total of # of asteroids created in a level
+let astCreated = 0; // Running total # asteroids created in a level
 
-// PLAY levels
 // JavaScript object literal to hold play level data where:
 //   astMax == total number of asteroids to create in the level
 //   astInterval == # of pixels moved per loop (larger number == faster)
@@ -66,11 +65,12 @@ const PLAY_LEVELS = {
   1: { astMax: 30, astInterval: 0.5, astSpawnFreq: 60 },
   2: { astMax: 40, astInterval: 0.75, astSpawnFreq: 50  },
   3: { astMax: 75, astInterval: 1.0, astSpawnFreq: 40 }
-  // ... Could add as more levels, if needed
+  // ... Could as many levels as desired
 };
-const levelCount = Object.keys(PLAY_LEVELS).length; // Store # of PLAY levels (excludes Intro, Win, Gameover)
+// Const to store # of PLAY levels (excludes Intro, Win, Gameover)
+const levelCount = Object.keys(PLAY_LEVELS).length; // 
 
-// Weapons
+// Weapons 
 const WEAPON_REGEN = 15; // # of frames between consecutive weapons fire
 let frameN = 0; // # of frames since app start
 let weaponFrame = 0; // frame count last time weapon was fired
@@ -121,26 +121,29 @@ function setup() {
  */
 function draw() {
 
-  // Increment # of frames played
+  // Count frames played
   frameN += 1;
 
-  // Check gameState and run the state
+  // Check gameState and run it
   switch (gameState) {
 
+    // INTRO level
     case STATE_INTRO:
       console.log("INTRO");
-      displayIntro();
+      runIntro();
       break;
 
+    // PLAY level
     case STATE_PLAY:
       console.log("PLAY");
+
       // Sets PLAY level state
       console.log('levelCount', levelCount);
       console.log('playLevel', playLevel);
       console.log('PLAY_LEVELS[playLevel].astMax', PLAY_LEVELS[playLevel].astMax)
-      // If no active asteroids or projectiles AND all asteroids have been created then increment playLevel
-      playLevel = (asteroids.length === 0 && projectiles.length === 0 && astCreated >= PLAY_LEVELS[playLevel].astMax) ? playLevel + 1 : playLevel;
-
+      if (asteroids.length === 0 && projectiles.length === 0 && astCreated >= PLAY_LEVELS[playLevel].astMax) {
+        playLevel += 1;
+      }
       // Check for ALL levels completed -> WIN!
       if (playLevel > levelCount) {
         gameState = STATE_WIN;
@@ -149,19 +152,20 @@ function draw() {
         // Clear the background and stop the music
         resetBackground();
         doMusic(false);
-        // If ship does not exist then create it
+
+        // If ship or status display console do not exist then create them
         if (typeof myShip === 'undefined') {
           myShip = new Ship(C_WIDTH / 2, C_HEIGHT - 30);
         }
-        // If status display console does not exist then create it
         if (typeof myDisplay === 'undefined') {
           myDisplay = new myConsole();
         }
-        //  Player keyboard controls: <- or a, -> or d, or space bar
+
+        // Setup player keyboard controls: <- or a, -> or d, or space bar
         //   
+        //   Note:
         //   keyIsPressed() detects if a key is held down and
         //   is most suitable for controlling an object like a ship.
-        //
         //   keyPressed() detects a single key press and is most
         //   suitable for moving to the next screen, etc.
         //
@@ -202,9 +206,7 @@ function draw() {
         }
         else {
           // Stop the thruster sound if it's playing
-          if (thrusterSnd.isPlaying()) {
-            thrusterSnd.stop()
-          };
+          if (thrusterSnd.isPlaying()) thrusterSnd.stop();
         }
         // Update player status display and projectile position
         myDisplay.display();
@@ -228,14 +230,55 @@ function draw() {
       }
       break;
 
+    // GAME WIN!!!
     case STATE_WIN:
       console.log("WIN");
-      displayWin();
+      if (winSndPlayed === false) {
+        winSnd.play();
+        winSndPlayed = true;
+      }
+      if (musicPlaying === false) {
+        doMusic(true); // Start music
+      }
+      myShip.x = C_WIDTH / 2;
+      myShip.y = C_HEIGHT - 30;
+      resetBackground();
+      strokeWeight(0);
+      fill(GREEN);
+      textAlign(CENTER, CENTER);
+      textSize(48);
+      text("Mission Accomplished!", C_WIDTH / 2, C_HEIGHT / 5);
+      textAlign(LEFT, TOP);
+      textSize(24);
+      text("You cleared the asteroid fields and delivered your cargo. Nice piloting!\n\n Your mission pay is $" + myDisplay.score, C_WIDTH / 5, C_HEIGHT / 3.6, C_WIDTH / 1.5);
+      textAlign(CENTER, TOP);
+      textSize(20);
+      fill(LIGHT_GREEN); // light green text
+      text("[Press Enter to play again]", C_WIDTH / 2, C_HEIGHT / 1.1);
       break;
 
+
+    // GAME OVER :-(
     case STATE_GAMEOVER:
       console.log("GAMEOVER");
-      displayGameOver()
+      if (musicPlaying === false) {
+        doMusic(true); // Start music
+      }
+      myShip.x = C_WIDTH / 2;
+      myShip.y = C_HEIGHT - 30;
+      resetBackground();
+      strokeWeight(0);
+      fill(GREEN);
+      textAlign(CENTER, CENTER);
+      textSize(48);
+      text("Game Over", C_WIDTH / 2, C_HEIGHT / 5);
+      textAlign(LEFT, TOP);
+      textSize(24);
+      text("Sorry Captain, but the ESV-217 collided with too many asteroids which depleted the ship's shields and it was destroyed.", C_WIDTH / 5, C_HEIGHT / 3.6, C_WIDTH / 1.5);
+      textAlign(CENTER, TOP);
+      textSize(20);
+      fill(LIGHT_GREEN);
+      text("[Press Enter to play again.]", C_WIDTH / 2, C_HEIGHT / 1.1);
       break;
 
   }
