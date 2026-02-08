@@ -50,33 +50,30 @@ function resetVariables() {
 function keyPressed(key) {
 
   // Enter key pressed in Intro state
-  switch (gameState) {
-    case (STATE_INTRO):
-      // Detect ENTER to advance to next INTRO screen
-      if (introLevel < 2 && (keyCode === 13)) {
-        introLevel += 1
-        if (musicPlaying === false) {
-          doMusic(true); // Start music
-        }
+  if (gameState === STATE_INTRO) {
+    // Detect ENTER to advance to next INTRO screen
+    if (introLevel < 2 && (keyCode === 13)) {
+      introLevel += 1
+      if (musicPlaying === false) {
+        doMusic(true); // Start music
       }
-      // Detect ENTER to advance to PLAY level
-      else if (introLevel === 2 && (keyCode === 13)) {
-        gameState = STATE_PLAY;
-      }
-      break;
-    case (STATE_GAMEOVER || STATE_WIN):
-      // Enter key pressed in Gameover or Win state
-      // Detect ENTER to play again
-      if (keyCode === 13) {
-        resetVariables();
-        myDisplay.reset();
-        gameState = STATE_PLAY;
-      }
-      break;
+    }
+    // Detect ENTER to advance to PLAY level
+    else if (introLevel === 2 && (keyCode === 13)) {
+      gameState = STATE_PLAY;
+    }
+  }
+  // Enter key pressed in Gameover or Win state
+  else if (gameState === STATE_GAMEOVER || gameState === STATE_WIN) {
+    // Detect ENTER to play again
+    if (keyCode === 13) {
+      resetVariables();
+      myDisplay.reset();
+      gameState = STATE_PLAY;
+    }
   }
   return false; // Prevent default browser behavior for keypress
 }
-
 
 
 /**
@@ -89,7 +86,7 @@ function controlAsteroids(createNew = false) {
   // Create and display a NEW asteroid
   if (createNew == true) {
     // Randomize x, r, y, number of points
-    // Apply variance to speed
+    // Apply slight variance to speed
     let r = getRandomInt(10, 30);
     let x = getRandomInt(0 + r, C_WIDTH - r);
     let y = 30 + r;
@@ -241,6 +238,8 @@ function controlProjectiles(createNew = false) {
 
 /**
  * Play/Stop music
+ * 
+ * IMPORTANT: INCOMPLETE
  * 
  * @param {Boolean} state 
  */
