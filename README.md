@@ -2,7 +2,9 @@
 
 **Asteroid Attack!** is a simple retro-inspired space shooter game demo where you defend your spaceship from incoming asteroids.
 
-The game aesthetics were loosely inspired by some early video games which had simple, vector-based graphics and a limited colour palette.
+The aesthetics and gameplay were loosely inspired by some early video games which had simple, vector-based graphics and a limited colour palette.
+
+Enjoy!
 
 ## Notes
 
