@@ -8,7 +8,7 @@ Enjoy!
 
 ## Notes
 
-I created this project for my post-secondary students who, in one course, use p5.js to create an interactivity susch as a simple game, a puzzle, etc. The project is intended to be a feature-limited demo of a simple game that can be created using p5.js. Because it's a demo for students, some of the comments are directed towards them.
+I created this project for my post-secondary students who, in one course, use p5.js to create an interactivity such as a simple game, a puzzle, etc. The project is intended to be a feature-limited demo of a simple game that can be created using p5.js. Because it's a demo for students, some of the comments are directed towards them.
 
 It was a quick build so it contains some sloppy or inefficient code. And to make it more fun it could use a few additional gameplay elements. But it works well enough for its intended purpose. Currently the application is not responsive. That's a major shortcoming. But I've got a fix to implement when I have time.
 
