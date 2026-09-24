@@ -8,9 +8,7 @@ Enjoy!
 
 ## Notes
 
-I created this project for my post-secondary 'Creative Computing' students who use p5.js to create an interactive such as a simple game, a puzzle, etc. The project is intended to be a feature-limited demo of a simple game that could be created using p5.js. Because it's a demo for students, some of the comments are directed towards them. The game isn't mobile friendly, it could benefit from improved gameplay, and the JavaScript is a sloppy mix of procedural and OOP, but it works well enough for its intended purpose. With the exceptions of the [p5.js (an open source JavaScript library)](https://p5js.org/) and a handful of publicly available media assets, the entire project — design, HTML, CSS, JavaScript (900+ lines) — is entirely my own.
-
-It was a quick build so it contains a lot of sloppy code. Sorry. And to make it more fun it could use a few additional gameplay elements. But it works well enough for its intended purpose. Currently the application is not responsive. That's a major shortcoming. I'll fix that some day.
+I created this project for my post-secondary 'Creative Computing' students who use p5.js to create an interactive such as a simple game, a puzzle, etc. The project is intended to be a feature-limited demo of a simple game that could be created using p5.js. Because it's a demo for students, some of the comments are directed towards them. The game isn't mobile friendly, it isn't responsive, it could benefit from improved gameplay, and the JavaScript is a sloppy mix of procedural and OOP, but it works well enough for its intended purpose. With the exceptions of the [p5.js (an open source JavaScript library)](https://p5js.org/) and a handful of publicly available media assets, the entire project — design, HTML, CSS, JavaScript (900+ lines) — is entirely my own.
 
 **The game must be run from a server.**
 
