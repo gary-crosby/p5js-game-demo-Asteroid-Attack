@@ -34,7 +34,7 @@ function runIntro() {
 
   // INTRO -> Mission Plan
   else if (introLevel === 1) {
-    if (musicIsPlaying = false) {
+    if (musicIsPlaying === false) {
       musicTrack.loop();
       musicIsPlaying = true;
       musicTrack.setVolume(MUSIC_HIGH);
