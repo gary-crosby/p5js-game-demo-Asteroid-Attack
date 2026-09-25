@@ -65,7 +65,7 @@ const PLAY_LEVELS = {
   1: { astMax: 30, astInterval: 0.5, astSpawnFreq: 60 },
   2: { astMax: 40, astInterval: 0.75, astSpawnFreq: 50  },
   3: { astMax: 75, astInterval: 1.0, astSpawnFreq: 40 }
-  // ... Could as many levels as desired
+  // ... OK to add unlimited number of levels
 };
 // Const to store # of PLAY levels (excludes Intro, Win, Gameover)
 const levelCount = Object.keys(PLAY_LEVELS).length; // 
@@ -151,7 +151,8 @@ function draw() {
       else {
         // Clear the background and stop the music
         resetBackground();
-        doMusic(false);
+        //doMusic(false);
+        musicTrack.setVolume(0.05)
 
         // If ship or status display console do not exist then create them
         if (typeof myShip === 'undefined') {
