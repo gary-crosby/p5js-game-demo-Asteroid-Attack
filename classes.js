@@ -156,9 +156,9 @@ class projectile {
   // Display the projectile
   display() {
     if (this.active) {
-      if (myDisplay.weapons > 50) {
+      if (myDisplay.weapon > 50) {
         stroke(GREEN);
-      } else if (myDisplay.weapons <= 50 && myDisplay.weapons >= 25) {
+      } else if (myDisplay.weapon <= 50 && myDisplay.weapon >= 25) {
         stroke(YELLOW);
       } else {
         stroke(RED);
@@ -180,7 +180,7 @@ class projectile {
  * @param {number} deltaY - number of pixels to move the asteroid
  * @param {number} n - number of sides of the asteroid
  * */
-class Asteroid {
+class asteroid {
   constructor(x, y, r, deltaY, n) {
     this.x = x;
     this.r = r;

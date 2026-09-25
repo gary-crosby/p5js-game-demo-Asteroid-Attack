@@ -85,7 +85,7 @@ function controlAsteroids(createNew = false) {
     let deltaY =
       PLAY_LEVELS[playLevel].astInterval * (getRandomInt(8, 12) / 10);
     // Instantiate a new asteroid
-    let newAsteroid = new Asteroid(x, y, r, deltaY, n);
+    let newAsteroid = new asteroid(x, y, r, deltaY, n);
     asteroids.push(newAsteroid);
     // Increment number of asteroids created in this PLAY_LEVEL
     astCreated += 1;
