@@ -113,7 +113,6 @@ function setup() {
   createCanvas(C_WIDTH, C_HEIGHT);
   resetBackground();
   soundFormats('ogg');
-  musicTrack.loop(true) // set music to loop but don't srat music
 }
 
 /**
