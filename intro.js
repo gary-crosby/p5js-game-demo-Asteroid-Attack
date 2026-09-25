@@ -12,6 +12,7 @@ function runIntro() {
   // INTRO -> Splash screen 
   if (introLevel === 0) {
     resetBackground();
+    musicTrack.play();
     stroke(GREEN);
     strokeWeight(0)
     fill(GREEN);

@@ -116,7 +116,6 @@ function setup() {
   soundFormats('ogg');
   musicTrack.loop = true;
   musicTrack.setVolume(MUSIC_HIGH);
-  musicTrack.play();
 }
 
 /**
