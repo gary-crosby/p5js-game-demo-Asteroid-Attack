@@ -113,7 +113,7 @@ function setup() {
   createCanvas(C_WIDTH, C_HEIGHT);
   resetBackground();
   soundFormats('ogg');
-  musicTrack
+  musicTrack.loop(true)
 }
 
 /**
