@@ -158,6 +158,17 @@ class projectile {
   // Display the projectile
   display() {
     if (this.active) {
+        if (myDisplay.weapons > 50) {
+          stroke(GREEN);
+        }
+        else if (myDisplay.weapons <= 50 && myDisplay.weapons >= 25) {
+          stroke(YELLOW)
+        }
+        else {
+          stroke(RED);
+        }
+      }
+
       fill(GREEN);
       ellipseMode(CENTER);
       ellipse(this.x, this.y, this.r * 2, this.r * 2); // Draw the projectile
