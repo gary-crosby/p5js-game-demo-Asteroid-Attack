@@ -268,11 +268,15 @@ class Ship {
           stroke(GREEN);
         }
         else if (myDisplay.shield <= 50 && myDisplay.shield > 0) {
-          fill(YELLOW)
+          stroke(YELLOW)
         }
         else {
-          fill(RED);
+          stroke(RED);
         }
+      }
+      // If ship not created yet default to GREEN
+       else {
+         stroke(GREEN);
       }
       strokeWeight(1);
       fill(BLACK);
