@@ -36,7 +36,7 @@ function runIntro() {
   else if (introLevel === 1) {
     if (musicIsPlaying = false) {
       musicTrack.loop();
-      isMusicPlaying = true;
+      musicIsPlaying = true;
       musicTrack.setVolume(MUSIC_HIGH);
     }
     resetBackground();
