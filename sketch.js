@@ -38,11 +38,6 @@ const YELLOW = [255, 234, 0];
 const LIGHT_GREEN = [0, 128, 0];
 const WHITE = [255, 255, 255];
 
-// Music volume 
-const IS_MUSIC_VOL_HIGH = true
-const MUSIC_HIGH = 0.25
-const MUSIC_LOW = 0.10
-
 // Canvas size
 const C_WIDTH = 750; // canvas width
 const C_HEIGHT = 1000; // canvas height
@@ -88,6 +83,10 @@ let shipDestroySnd; // ship destroy sound
 let thrusterSnd; //  thruster sound
 let winSnd; // WIN sound
 let winSndPlayed = false;
+let isMusicPlaying = false; 
+const IS_MUSIC_VOL_HIGH = true
+const MUSIC_HIGH = 0.25
+const MUSIC_LOW = 0.10
 
 /**
  * Preload audio into sound instances.
@@ -114,8 +113,6 @@ function setup() {
   createCanvas(C_WIDTH, C_HEIGHT);
   resetBackground();
   soundFormats('ogg');
-  musicTrack.loop = true;
-  musicTrack.setVolume(MUSIC_HIGH);
 }
 
 /**

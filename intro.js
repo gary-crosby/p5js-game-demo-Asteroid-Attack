@@ -33,6 +33,8 @@ function runIntro() {
 
   // INTRO -> Mission Plan
   else if (introLevel === 1) {
+    musicTrack.loop();
+    musicTrack.setVolume(MUSIC_HIGH);
     resetBackground();
     fill(GREEN); // green text
     strokeWeight(0);
