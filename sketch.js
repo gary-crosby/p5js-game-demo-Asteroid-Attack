@@ -91,13 +91,13 @@ let winSndPlayed = false;
  * Runs once before setup()
  */
 function preload() {
-  weaponFireSnd = loadSound('/assets/laserSmall_004.ogg');
-  astDestroySnd = loadSound('/assets/explosionCrunch_000.ogg');
-  shieldSnd = loadSound('/assets/forceField_000.ogg');
-  shipDestroySnd = loadSound('/assets/explosionCrunch_002.ogg');
-  thrusterSnd = loadSound('/assets/thrusterFire_004.ogg');
-  winSnd = loadSound('/assets/success.mp3');
-  musicTrack = loadSound('/assets/Light-Years_V001_Looping.mp3');
+  weaponFireSnd = loadSound('assets/laserSmall_004.ogg');
+  astDestroySnd = loadSound('assets/explosionCrunch_000.ogg');
+  shieldSnd = loadSound('assets/forceField_000.ogg');
+  shipDestroySnd = loadSound('assets/explosionCrunch_002.ogg');
+  thrusterSnd = loadSound('assets/thrusterFire_004.ogg');
+  winSnd = loadSound('assets/success.mp3');
+  musicTrack = loadSound('assets/Light-Years_V001_Looping.mp3');
 }
 
 /**
