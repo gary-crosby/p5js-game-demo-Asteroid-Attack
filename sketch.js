@@ -83,7 +83,7 @@ let shipDestroySnd; // ship destroy sound
 let thrusterSnd; //  thruster sound
 let winSnd; // WIN sound
 let winSndPlayed = false;
-let isMusicPlaying = false; 
+let musicIsPlaying = false; 
 const IS_MUSIC_VOL_HIGH = true
 const MUSIC_HIGH = 0.25
 const MUSIC_LOW = 0.10
@@ -113,6 +113,7 @@ function setup() {
   createCanvas(C_WIDTH, C_HEIGHT);
   resetBackground();
   soundFormats('ogg');
+  musicTrack
 }
 
 /**

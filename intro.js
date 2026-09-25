@@ -26,7 +26,7 @@ function runIntro() {
     textSize(12);
     text("Created by:\nGary Crosby", C_WIDTH / 2, C_HEIGHT / 3.1);
     text("Credits:\nSound effects from www.kenney.nl and leszek_szary at www.pixabay.com\nMusic by Eric Matyas at www.soundimage.org", C_WIDTH / 2, C_HEIGHT / 2.6);
-    text("Version:\n1.0.1 last updated 25.09.2026", C_WIDTH / 2, C_HEIGHT / 2.1);
+    text("Version:\n1.0.2 last updated 25.09.2026", C_WIDTH / 2, C_HEIGHT / 2.1);
     fill(LIGHT_GREEN);
     textSize(20);
     text("[Click inside the browser window, and then press Enter to continue]", C_WIDTH / 2, C_HEIGHT / 1.1); // keypress detection in function keyPressed()
@@ -34,8 +34,11 @@ function runIntro() {
 
   // INTRO -> Mission Plan
   else if (introLevel === 1) {
-    musicTrack.loop();
-    musicTrack.setVolume(MUSIC_HIGH);
+    if (musicIsPlaying = false) {
+      musicTrack.loop();
+      isMusicPlaying = true;
+      musicTrack.setVolume(MUSIC_HIGH);
+    }
     resetBackground();
     fill(GREEN); // green text
     strokeWeight(0);
