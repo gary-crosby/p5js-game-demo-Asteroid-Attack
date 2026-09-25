@@ -75,6 +75,10 @@ const WEAPON_REGEN = 15; // # of frames between consecutive weapons fire
 let frameN = 0; // # of frames since app start
 let weaponFrame = 0; // frame count last time weapon was fired
 
+// Other
+let myDisplay;
+let myShip;
+
 // Sounds and music
 let weaponFireSnd; // weapon sound 
 let astDestroySnd; // asteroid destroyed sound

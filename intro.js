@@ -34,7 +34,7 @@ function runIntro() {
 
   // INTRO -> Mission Plan
   else if (introLevel === 1) {
-    // Known p5.js issue: do not repeatedly music.loop()
+    // Known p5.js bug: do not repeatedly music.loop() inside draw()
     if (musicIsPlaying === false) {
       musicTrack.loop();
       musicIsPlaying = true;

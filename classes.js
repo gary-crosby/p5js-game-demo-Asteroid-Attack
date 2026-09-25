@@ -99,7 +99,7 @@ class myConsole {
     if (this.weapon > 50) {
       fill(GREEN);
     }
-    else if (this.weapon <= 50 && this.weapon > 10) {
+    else if (this.weapon <= 50 && this.weapon >= 25) {
       fill(YELLOW)
     }
     else {
@@ -110,7 +110,7 @@ class myConsole {
     if (this.fuel > 50) {
       fill(GREEN);
     }
-    else if (this.fuel <= 50 && this.fuel > 10) {
+    else if (this.fuel <= 50 && this.fuel >=25) {
       fill(YELLOW)
     }
     else {
@@ -262,7 +262,18 @@ class Ship {
   // Display the ship
   display() {
     if (this.active) {
-      stroke(GREEN);
+      // Change colour to represent shiled state
+      if (myDisplay) {
+        if(myDisplay.shield > 50) {
+          stroke(GREEN);
+        }
+        else if (myDisplay.shield <= 50 && myDisplay.shield > 0) {
+          fill(YELLOW)
+        }
+        else {
+          fill(RED);
+        }
+      }
       strokeWeight(1);
       fill(BLACK);
       beginShape();
