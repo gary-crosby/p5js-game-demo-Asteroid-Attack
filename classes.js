@@ -1,19 +1,16 @@
 /**
  * Contains all classes for Asteroid Alert!
-*/
-
+ */
 
 /**
- * 
- * 
+ *
+ *
  */
-class level {
-  
-}
+class level {}
 
 /**
  * Represents the player's display console
- * 
+ *
  * @param {number} weapon == % remnaining of weapon
  * @param {number} shield == % remaining of shield
  * @param {number} fuel == % remaining of fuel
@@ -25,8 +22,16 @@ class level {
  * All params have defaults
  */
 class myConsole {
-  constructor(weapon = 100, shield = 100, fuel = 100, score = 0,
-    weaponCost = 0.5, shieldCost = 50, fuelCost = 0.035, asteroidScore = 1000) {
+  constructor(
+    weapon = 100,
+    shield = 100,
+    fuel = 100,
+    score = 0,
+    weaponCost = 0.5,
+    shieldCost = 50,
+    fuelCost = 0.035,
+    asteroidScore = 1000,
+  ) {
     this.weapon = weapon;
     this.weaponCost = weaponCost;
     this.shield = shield;
@@ -60,19 +65,19 @@ class myConsole {
 
   //Ship moved so update fuel level
   shipMoved() {
-    this.fuel -= this.fuelCost; 
+    this.fuel -= this.fuelCost;
     if (this.fuel < 0) {
       this.fuel = 0;
     }
   }
 
-    // Weapon fired so decrement weapon power
-    weaponFired() {
-      this.weapon -= this.weaponCost; 
-      if (this.weapon < 0) {
-        this.weapon = 0;
-      }
+  // Weapon fired so decrement weapon power
+  weaponFired() {
+    this.weapon -= this.weaponCost;
+    if (this.weapon < 0) {
+      this.weapon = 0;
     }
+  }
 
   // Collision between asteroid and ship so decrease sheild power
   collision() {
@@ -87,33 +92,27 @@ class myConsole {
     // Change shield color based on status
     if (this.shield > 50) {
       fill(GREEN);
-    }
-    else if (this.shield <= 50 && this.shield > 0) {
-      fill(YELLOW)
-    }
-    else {
+    } else if (this.shield <= 50 && this.shield > 0) {
+      fill(YELLOW);
+    } else {
       fill(RED);
     }
     text("Shield: " + parseInt(this.shield) + "%", 165, 5);
     // Change Weapon color based on status
     if (this.weapon > 50) {
       fill(GREEN);
-    }
-    else if (this.weapon <= 50 && this.weapon >= 25) {
-      fill(YELLOW)
-    }
-    else {
+    } else if (this.weapon <= 50 && this.weapon >= 25) {
+      fill(YELLOW);
+    } else {
       fill(RED);
     }
     text("Weapon: " + parseInt(this.weapon) + "%", 350, 5);
     // Change fuel color base on status
     if (this.fuel > 50) {
       fill(GREEN);
-    }
-    else if (this.fuel <= 50 && this.fuel >=25) {
-      fill(YELLOW)
-    }
-    else {
+    } else if (this.fuel <= 50 && this.fuel >= 25) {
+      fill(YELLOW);
+    } else {
       fill(RED);
     }
     text("Fuel: " + parseInt(this.fuel) + "%", 10, 5);
@@ -123,15 +122,14 @@ class myConsole {
   }
 }
 
-
 /**
  * Represents a weapon projectile
- * 
+ *
  *  @param {number} x == x position of the projectile
  *  @param {number} y == y position of the projectile
  *  @param {number} deltaY == [optional] number of pixels to move the projectile
- *  @param {number} r == [optional] radius in pixels of the projectile 
-*/
+ *  @param {number} r == [optional] radius in pixels of the projectile
+ */
 class projectile {
   constructor(x, y, deltaY = 15, r = 3) {
     this.x = x;
@@ -158,30 +156,27 @@ class projectile {
   // Display the projectile
   display() {
     if (this.active) {
-        if (myDisplay.weapons > 50) {
-          stroke(GREEN);
-        }
-        else if (myDisplay.weapons <= 50 && myDisplay.weapons >= 25) {
-          stroke(YELLOW)
-        }
-        else {
-          stroke(RED);
-        }
+      if (myDisplay.weapons > 50) {
+        stroke(GREEN);
+      } else if (myDisplay.weapons <= 50 && myDisplay.weapons >= 25) {
+        stroke(YELLOW);
+      } else {
+        stroke(RED);
       }
-
-      fill(GREEN);
-      ellipseMode(CENTER);
-      ellipse(this.x, this.y, this.r * 2, this.r * 2); // Draw the projectile
     }
-  }
 
+    fill(GREEN);
+    ellipseMode(CENTER);
+    ellipse(this.x, this.y, this.r * 2, this.r * 2); // Draw the projectile
+  }
+}
 
 /**
  * Represents an asteroid
- * 
+ *
  * @param {number} x - x position of the asteroid
  * @param {number} y - y position of the asteroid
- * @param {number} r radius in pixels of the asteroid    
+ * @param {number} r radius in pixels of the asteroid
  * @param {number} deltaY - number of pixels to move the asteroid
  * @param {number} n - number of sides of the asteroid
  * */
@@ -201,7 +196,7 @@ class Asteroid {
     if (this.active) {
       this.y += this.deltaY; // Move the asteroid down by step value
       if (this.y > height + this.r) {
-        this.destroy(); // Destroy the asteroid if it goes off the screen 
+        this.destroy(); // Destroy the asteroid if it goes off the screen
       }
       this.display();
     }
@@ -215,7 +210,7 @@ class Asteroid {
   // Display the asteroid
   display() {
     if (this.active) {
-      // Draw the asteroid  
+      // Draw the asteroid
       stroke(WHITE);
       strokeWeight(1);
       fill(0, 0, 0);
@@ -231,14 +226,13 @@ class Asteroid {
   }
 }
 
-
 /**
  * Represents the ship
- * 
+ *
  * @param {number} x - x position of the ship
  * @param {number} y - y position of the ship
  */
-class Ship {
+class ship {
   constructor(x, y) {
     this.x = x; // x position of the ship
     this.y = y; // y position of the ship
@@ -250,7 +244,7 @@ class Ship {
 
   // Move the ship to the right
   moveRight() {
-    if (this.active && this.x < (C_WIDTH - this.deltaX - this.r)) {
+    if (this.active && this.x < C_WIDTH - this.deltaX - this.r) {
       this.x = this.x + this.deltaX;
       this.display();
     }
@@ -258,7 +252,7 @@ class Ship {
 
   // Move the ship to the left
   moveLeft() {
-    if (this.active && this.x > (0 + this.deltaX + this.r)) {
+    if (this.active && this.x > 0 + this.deltaX + this.r) {
       this.x = this.x - this.deltaX;
       this.display();
     }
@@ -274,19 +268,17 @@ class Ship {
     if (this.active) {
       // Change colour to represent shiled state
       if (myDisplay) {
-        if(myDisplay.shield > 50) {
+        if (myDisplay.shield > 50) {
           stroke(GREEN);
-        }
-        else if (myDisplay.shield <= 50 && myDisplay.shield > 0) {
-          stroke(YELLOW)
-        }
-        else {
+        } else if (myDisplay.shield <= 50 && myDisplay.shield > 0) {
+          stroke(YELLOW);
+        } else {
           stroke(RED);
         }
       }
       // If ship not created yet default to GREEN
-       else {
-         stroke(GREEN);
+      else {
+        stroke(GREEN);
       }
       strokeWeight(1);
       fill(BLACK);

@@ -2,14 +2,12 @@
  * Contains all functions for Asteroid Alert!
  */
 
-
 /**
  * Reset canvas background
  */
 function resetBackground() {
   background(BLACK); // Reset background color
 }
-
 
 /**
  * Reset values for Globals to start/restart game play.
@@ -20,7 +18,7 @@ function resetVariables() {
   musicPlaying = false; // false to stop or true to play
   gameState = STATE_INTRO; // values: STATE_INTRO, STATE_PLAY,STATE_GAMEOVERR, STATE_CREDITS
   introLevel = 0; // INTRO gameState: 0, 1, 2
-  playLevel = 1; //PLAY gameState level: 0 ... 
+  playLevel = 1; //PLAY gameState level: 0 ...
   winSndPlayed = false;
   astCreated = 0; // # of asteroids created in a level
 
@@ -40,23 +38,21 @@ function resetVariables() {
   }
 }
 
-
 /**
  * Handle key presses on INTRO, GAME OVER and WIN states
- * 
+ *
  * @param {*} key from system event
  * @returns {false}
  */
 function keyPressed(key) {
-
   // Enter key pressed in Intro state
   if (gameState === STATE_INTRO) {
     // Detect ENTER to advance to next INTRO screen
-    if (introLevel < 2 && (keyCode === 13)) {
-      introLevel += 1
+    if (introLevel < 2 && keyCode === 13) {
+      introLevel += 1;
     }
     // Detect ENTER to advance to PLAY level
-    else if (introLevel === 2 && (keyCode === 13)) {
+    else if (introLevel === 2 && keyCode === 13) {
       gameState = STATE_PLAY;
     }
   }
@@ -72,14 +68,12 @@ function keyPressed(key) {
   return false; // Prevent default browser behavior for keypress
 }
 
-
 /**
  * Create and control asteroids
- * 
+ *
  * @param {boolean} [doCreate=false]
  */
 function controlAsteroids(createNew = false) {
-
   // Create and display a NEW asteroid
   if (createNew == true) {
     // Randomize x, r, y, number of points
@@ -88,7 +82,8 @@ function controlAsteroids(createNew = false) {
     let x = getRandomInt(0 + r, C_WIDTH - r);
     let y = 30 + r;
     let n = getRandomInt(7, 15);
-    let deltaY = PLAY_LEVELS[playLevel].astInterval * (getRandomInt(8, 12) / 10);
+    let deltaY =
+      PLAY_LEVELS[playLevel].astInterval * (getRandomInt(8, 12) / 10);
     // Instantiate a new asteroid
     let newAsteroid = new Asteroid(x, y, r, deltaY, n);
     asteroids.push(newAsteroid);
@@ -103,7 +98,7 @@ function controlAsteroids(createNew = false) {
     // Loop through all asteroids
     for (let i = 0; i < Number(asteroids.length); i++) {
       // Asteroid has NOT reached the bottom of the screen
-      if (asteroids[i].y < (C_HEIGHT + asteroids[i].r)) {
+      if (asteroids[i].y < C_HEIGHT + asteroids[i].r) {
         asteroids[i].move();
       }
       // Asteroid has reached the bottom of the screen
@@ -122,8 +117,11 @@ function controlAsteroids(createNew = false) {
     removeAsteroids = [];
     // Loop through all asteroids
     for (let i = 0; i < Number(asteroids.length); i++) {
-      // 
-      if (dist(asteroids[i].x, asteroids[i].y, myShip.x, myShip.y) > (myShip.r + asteroids[i].r)) {
+      //
+      if (
+        dist(asteroids[i].x, asteroids[i].y, myShip.x, myShip.y) >
+        myShip.r + asteroids[i].r
+      ) {
         asteroids[i].move();
       }
       // Asteroid has collided with ship
@@ -136,7 +134,7 @@ function controlAsteroids(createNew = false) {
         }
         if (myDisplay.shield < 0) {
           myDisplay.shield = 0;
-          shipDestroySnd.play()
+          shipDestroySnd.play();
           gameState = STATE_GAMEOVER;
         }
       }
@@ -151,18 +149,16 @@ function controlAsteroids(createNew = false) {
   }
 }
 
-
 /**
  * Create and control weapon projectiles
- * 
+ *
  * @param {boolean} [createNew = false] // if true create a new projectile
  */
 function controlProjectiles(createNew = false) {
-
   // Create a NEW projectile
   if (createNew) {
     // instantiate a new projectile
-    let newProjectile = new projectile(myShip.x, (myShip.y - 21));
+    let newProjectile = new projectile(myShip.x, myShip.y - 21);
     projectiles.push(newProjectile);
     // Update the last firing frame number and weapons status
     weaponFrame = frameN;
@@ -177,7 +173,7 @@ function controlProjectiles(createNew = false) {
     // Check for out of bounds projectiles
     for (let p = 0; p < projectiles.length; p++) {
       // Projectile has reached the top boundary or is above the top boundary
-      if ((projectiles[p].y) <= (40 + projectiles[p].r)) {
+      if (projectiles[p].y <= 40 + projectiles[p].r) {
         // Add projectile to the removals list
         projectilesToRemove.push(p);
       }
@@ -198,7 +194,15 @@ function controlProjectiles(createNew = false) {
       // Check for collision between projectile and ALL asteroids
       for (let p = 0; p < projectiles.length; p++) {
         for (let a = 0; a < asteroids.length; a++) {
-          if (dist(projectiles[p].x, projectiles[p].y, asteroids[a].x, asteroids[a].y) <= (projectiles[p].r + asteroids[a].r)) {
+          if (
+            dist(
+              projectiles[p].x,
+              projectiles[p].y,
+              asteroids[a].x,
+              asteroids[a].y,
+            ) <=
+            projectiles[p].r + asteroids[a].r
+          ) {
             // Add projectile to removals list
             // If projectile is already on removals list then DO NOT add it again.
             if (projectilesToRemove.includes(p) == false) {
@@ -232,15 +236,14 @@ function controlProjectiles(createNew = false) {
   }
 }
 
-
 /**
  * Generate a random integer between min and max
- * 
- * @param {number} min  
- * @param {number} max 
- * 
+ *
+ * @param {number} min
+ * @param {number} max
+ *
  * @param returns {number}
  */
 function getRandomInt(min, max) {
-  return (Math.floor(Math.random() * (max - min + 1)) + min);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

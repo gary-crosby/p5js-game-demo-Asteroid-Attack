@@ -160,7 +160,7 @@ function draw() {
 
         // If ship or status display console do not exist then create them
         if (typeof myShip === 'undefined') {
-          myShip = new Ship(C_WIDTH / 2, C_HEIGHT - 30);
+          myShip = new ship(C_WIDTH / 2, C_HEIGHT - 30);
         }
         if (typeof myDisplay === 'undefined') {
           myDisplay = new myConsole();
