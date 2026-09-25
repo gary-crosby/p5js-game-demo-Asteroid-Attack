@@ -28,7 +28,7 @@ function runIntro() {
     text("Credits:\nSound effects from www.kenney.nl and leszek_szary at www.pixabay.com\nMusic by Eric Matyas at www.soundimage.org", C_WIDTH / 2, C_HEIGHT / 2.6);
     fill(LIGHT_GREEN);
     textSize(20);
-    text("[Press Enter to continue]", C_WIDTH / 2, C_HEIGHT / 1.1); // keypress detection in function keyPressed()
+    text("[Click inside the browser window, and then press Enter to continue]", C_WIDTH / 2, C_HEIGHT / 1.1); // keypress detection in function keyPressed()
   }
 
   // INTRO -> Mission Plan
