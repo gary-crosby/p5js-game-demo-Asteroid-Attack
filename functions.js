@@ -54,6 +54,7 @@ function keyPressed(key) {
     // Detect ENTER to advance to next INTRO screen
     if (introLevel < 2 && (keyCode === 13)) {
       introLevel += 1
+      musicTrack.play();
       musicTrack.setVolume(MUSIC_HIGH);
     }
     // Detect ENTER to advance to PLAY level
