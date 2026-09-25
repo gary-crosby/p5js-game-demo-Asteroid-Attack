@@ -54,9 +54,7 @@ function keyPressed(key) {
     // Detect ENTER to advance to next INTRO screen
     if (introLevel < 2 && (keyCode === 13)) {
       introLevel += 1
-      if (musicPlaying === false) {
-        doMusic(true); // Start music
-      }
+      musicTrack.setVolume(MUSIC_HIGH);
     }
     // Detect ENTER to advance to PLAY level
     else if (introLevel === 2 && (keyCode === 13)) {
@@ -233,28 +231,6 @@ function controlProjectiles(createNew = false) {
       console.log("ASTEROID DELETED FROM ARRAY!");
     }
   }
-}
-
-
-/**
- * Play/Stop music
- * 
- * IMPORTANT: INCOMPLETE
- * 
- * @param {Boolean} state 
- */
-function doMusic(state) {
-  // Play music
-  if (state == true) {
-    console.log("Start music");
-    musicTrack.play();
-  }
-  // Stop music
-  else {
-    console.log("Stop music");
-    musicTrack.pause();
-  }
-  musicPlaying = state;
 }
 
 

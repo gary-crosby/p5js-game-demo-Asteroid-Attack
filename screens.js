@@ -67,9 +67,7 @@ function displayWin() {
     winSnd.play();
     winSndPlayed = true;
   }
-  if (musicPlaying === false) {
-    doMusic(true); // Start music
-  }
+  
   myShip.x = C_WIDTH / 2;
   myShip.y = C_HEIGHT - 30;
   resetBackground();
@@ -88,9 +86,6 @@ function displayWin() {
 }
 
 function displayGameOver() {
-  if (musicPlaying === false) {
-    doMusic(true); // Start music
-  }
   myShip.x = C_WIDTH / 2;
   myShip.y = C_HEIGHT - 30;
   resetBackground();

@@ -38,6 +38,11 @@ const YELLOW = [255, 234, 0];
 const LIGHT_GREEN = [0, 128, 0];
 const WHITE = [255, 255, 255];
 
+// Music volume 
+const IS_MUSIC_VOL_HIGH = true
+const MUSIC_HIGH = 0.25
+const MUSIC_LOW = 0.10
+
 // Canvas size
 const C_WIDTH = 750; // canvas width
 const C_HEIGHT = 1000; // canvas height
@@ -76,7 +81,6 @@ let frameN = 0; // # of frames since app start
 let weaponFrame = 0; // frame count last time weapon was fired
 
 // Sounds and music
-let musicPlaying = false; // false to stop or true to play
 let weaponFireSnd; // weapon sound 
 let astDestroySnd; // asteroid destroyed sound
 let shieldSnd; // sheild activated sound
@@ -111,7 +115,8 @@ function setup() {
   resetBackground();
   soundFormats('ogg');
   musicTrack.loop = true;
-  musicTrack.setVolume(0.25);
+  musicTrack.setVolume(MUSIC_HIGH);
+  musicTrack.play();
 }
 
 /**
@@ -149,10 +154,9 @@ function draw() {
         gameState = STATE_WIN;
       }
       else {
-        // Clear the background and stop the music
+        // Clear the background and cut music volume
         resetBackground();
-        //doMusic(false);
-        musicTrack.setVolume(0.05)
+        musicTrack.setVolume(MUSIC_LOW);
 
         // If ship or status display console do not exist then create them
         if (typeof myShip === 'undefined') {
@@ -238,9 +242,7 @@ function draw() {
         winSnd.play();
         winSndPlayed = true;
       }
-      if (musicPlaying === false) {
-        doMusic(true); // Start music
-      }
+      musicTrack.setVolume(MUSIC_HIGH);
       myShip.x = C_WIDTH / 2;
       myShip.y = C_HEIGHT - 30;
       resetBackground();
@@ -262,9 +264,7 @@ function draw() {
     // GAME OVER :-(
     case STATE_GAMEOVER:
       console.log("GAMEOVER");
-      if (musicPlaying === false) {
-        doMusic(true); // Start music
-      }
+      musicTrack.setVolume(MUSIC_HIGH);
       myShip.x = C_WIDTH / 2;
       myShip.y = C_HEIGHT - 30;
       resetBackground();
